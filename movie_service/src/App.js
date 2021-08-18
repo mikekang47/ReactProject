@@ -8,10 +8,11 @@ class App extends React.Component {
   };
 
   getMovies = async () => {
-      const movies = await axios.get("http://yts-proxy.now.sh/ist_moives.json");
+      const {data: {data : {movies}}} = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+      this.setState({movies, isLoading: false})
   };
 
-  conponentDidMount() {
+  componentDidMount() {
     this.getMovies();
 
   }
